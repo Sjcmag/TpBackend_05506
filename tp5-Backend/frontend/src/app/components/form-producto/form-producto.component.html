@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row p-1">
+        <div class="col-12">
+            <h1 class="text-center">Registrar Productos</h1>
+        </div>
+    </div>
+    <div class="row g-1 justify-content-center mt-3">
+        <div class="col-8">
+            <form class="mb-3">
+                <div class="mb-3">
+                    <label class="form-label">Ingrese nombre del Producto</label>
+                    <input type="text" class="form-control" name="nombre" [(ngModel)]="producto.nombre" #nombre="ngModel" required>
+                    <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert alert-danger">
+                        <!-- Si es invalido, touched si la caja a sido tocada, dirty cuando la caja no esta limpia  -->
+                        <div *ngIf="nombre.errors?.['required']"> <!-- Si es que tiene errores si contiene required-->
+                            El Nombre es requerido.
+                        </div>
+                        <div *ngIf="nombre.errors?.['pattern']">
+                            Solo se permiten letras en el Nombre.
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ingrese descripcion del Producto</label>
+                    <input type="text" class="form-control" name="descripcion" [(ngModel)]="producto.descripcion" required #descripcion="ngModel">
+                    <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="alert alert-danger">
+                        <!-- Si es invalido, touched si la caja a sido tocada, dirty cuando la caja no esta limpia  -->
+                        <div *ngIf="descripcion.errors?.['required']"> <!-- Si es que tiene errores si contiene required-->
+                            La Descripcion es requerida.
+                        </div>
+                        <div *ngIf="descripcion.errors?.['pattern']">
+                            Solo se permiten letras en la descripcion.
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ingrese URL de imagen del Producto</label>
+                    <input type="text" class="form-control" name="imagen"  #imagen="ngModel"  [(ngModel)]="producto.imagen" required>
+                    <div *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)" class="alert alert-danger">
+                        <!-- Si es invalido, touched si la caja a sido tocada, dirty cuando la caja no esta limpia  -->
+                        <div *ngIf="imagen.errors?.['required']"> <!-- Si es que tiene errores si contiene required-->
+                            La imagen es requerida.
+                        </div>
+                        <div *ngIf="imagen.errors?.['pattern']">
+                            Solo se permiten letras en la imagen.
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ingrese precio del Producto</label>
+                    <div class="input-group">
+                        <div class="input-group-text">$</div>
+                        <input type="number" class="form-control" name="precio"  required #precio="ngModel" [(ngModel)]="producto.precio" required>
+                        <div *ngIf="precio.invalid && (precio.dirty || precio.touched) " class="alert alert-danger">
+                            <!-- Si es invalido, touched si la caja a sido tocada, dirty cuando la caja no esta limpia  -->
+                            <div *ngIf="precio.errors?.['required']"> <!-- Si es que tiene errores si contiene required-->
+                                El Precio es requerido.
+                            </div>
+                            <div *ngIf="precio.errors?.['min']">
+                                Solo se permiten valores positivos en el precio.
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ingrese stock del Producto</label>
+                    <div class="input-group">
+                        <div class="input-group-text">#</div>
+                        <input type="number" class="form-control" name="stock" [(ngModel)]="producto.stock" #stock="ngModel" required>
+                        <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="alert alert-danger">
+                            <!-- Si es invalido, touched si la caja a sido tocada, dirty cuando la caja no esta limpia  -->
+                            <div *ngIf="stock.errors?.['required']"> <!-- Si es que tiene errores si contiene required-->
+                                El Stock es requerido.
+                            </div>
+                            <div *ngIf="stock.errors?.['min']">
+                                Solo se permiten valores positivos en el stock.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">El Producto es Destacado?</label>
+                    <select class="form-select" aria-label="Default select example" name="destacado" [(ngModel)]="producto.destacado" required>
+                        <option value="" selected disabled>Seleccione</option>
+                        <option value="false">No</option>
+                        <option value="true">Si</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary btn-lg" (click)="guardarProducto()">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
